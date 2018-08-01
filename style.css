@@ -7,6 +7,12 @@ padding:0;
 vertical-align:baseline;
 }
 
+#commit{
+	font-size: 30px;
+	text-align: center;
+	color: red;
+}
+
 article,section {
 display:block;
 }
