@@ -1,16 +1,68 @@
-<!DOCTYPE html>
+
 <html>
+
 <head>
-<title>Sulaiman Albulaihy - CV</title>
-
-<meta name="viewport" content="width=device-width"/>
-<meta charset="UTF-8"> 
-<link type="text/css" rel="stylesheet" href="style.css">
-
-
+	<title>Sulaiman Albulaihy - CV</title>
+	<script src="https://fb.me/react-15.1.0.js"></script>
+	<script src="https://fb.me/react-dom-15.1.0.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script src="https://npmcdn.com/react-router@2.4.0/umd/ReactRouter.min.js"></script>
+	<link rel="stylesheet" href="style.css">
 </head>
-<body id="top">
-<div id="cv">
+
+<body>
+
+	<div id="container">
+
+	</div>
+
+	<script type="text/babel">
+		var destination = document.querySelector("#container");
+		var {Router, Route, IndexRoute, IndexLink, Link}= ReactRouter;
+		var Home= React.createClass({
+		render(){
+		return(
+		<div>
+			<p>Hello! I'm Sulaiman Saleh. Web and mobile developer with some experince, specializing in front aend development. especially JavaScript!.</p>
+		</div>
+		)
+	}
+});
+var Contact = React.createClass({
+render: function() {
+return (
+<div>
+	<h2>Qassim University</h2>
+	<h4>Qualification</h4>
+	<p>I'm a student on level 9th of computer science and active member of the affairs.
+	</p>
+</div>
+);
+}
+});
+
+var Stuff = React.createClass({
+render: function() {
+return (
+<div>
+					<ul>
+					<li>JavaScript</li>
+					<li>React</li>
+					<li>PHP</li>
+					<li>HTML5</li>
+					<li>CSS</li>
+					<li>Android</li>
+					<li>Swift</li>
+					<li>Python</li>
+				</ul>
+</div>
+);
+}
+});
+var App= React.createClass({
+render(){
+return(
+<div>
 	<div class="mainDetails">
 		<div id="headshot">
 			<img src="headshot.jpg" alt="sulaiman pic" />
@@ -29,59 +81,30 @@
 		</div>
 		<div class="clear"></div>
 	</div>
-	
-	<div id="mainArea" class="quickFade delayOne">
-		<section>
-			<article>
-				<div class="sectionTitle">
-					<h1>Personal Profile</h1>
-				</div>
-				
-				<div class="sectionContent">
-					<p>Hello! I'm Sulaiman Saleh. Web and mobile developer with some experince, specializing in front aend development. especially JavaScript!.</p>
-				</div>
-			</article>
-			<div class="clear"></div>
-		</section>
-		
-		
-		<section>
-			<div class="sectionTitle">
-				<h1>Skills</h1>
-			</div>
-			
-			<div class="sectionContent">
-				<ul class="keySkills">
-					<li>JavaScript jQuerry</li>
-					<li>PHP</li>
-					<li>HTML5</li>
-					<li>CSS</li>
-					<li>Android</li>
-					<li>Swift</li>
-					<li>Python</li>
-				</ul>
-			</div>
-			<div class="clear"></div>
-		</section>
-		
-		
-		<section>
-			<div class="sectionTitle">
-				<h1>Education</h1>
-			</div>
-			
-			<div class="sectionContent">
-				<article>
-					<h2>Qassim University</h2>
-					<p class="subDetails">Qualification</p>
-					<p>I'm a student on level 9th of computer science and active member of the affairs.</p>
-				</article>
-			</div>
-			<div class="clear"></div>
-		</section>
-		
+	<ul className="header">
+		<li><IndexLink to="/" activeClassName="active">Personal Profile</IndexLink></li>
+		<li><Link to="/stuff" activeClassName="active">Skills</Link></li>
+		<li><Link to="/contact" activeClassName="active">Education</Link></li>
+	</ul>
+	<div className="content">
+		{this.props.children}
 	</div>
 </div>
-
+)
+}
+});
+ReactDOM.render(
+<Router>
+	<Route path="/" component={App}>
+		<IndexRoute  component={Home}/>
+		<Route path="/stuff" component={Stuff}/>
+		<Route path="/contact" component={Contact}/>
+	</Route>
+</Router>
+,
+destination
+);
+</script>
 </body>
+
 </html>
